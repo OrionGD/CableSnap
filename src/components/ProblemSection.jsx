@@ -1,70 +1,47 @@
-import { BatteryWarning, Zap, Leaf } from 'lucide-react';
+import React from 'react';
 import './ProblemSection.css';
+import { AlertTriangle } from 'lucide-react';
 
-const problems = [
-  {
-    icon: <BatteryWarning size={36} />,
-    emoji: '🔋',
-    title: 'Battery Damage',
-    desc: 'Leaving your phone plugged in overnight causes chronic overcharging that silently degrades your battery — costing you hundreds in replacements.',
-    stat: '80%',
-    statLabel: 'of smartphone users overcharge nightly',
-    color: '#FF4757',
-  },
-  {
-    icon: <Zap size={36} />,
-    emoji: '⚡',
-    title: 'Wasted Energy',
-    desc: 'A charger left plugged in after full charge still draws power. Multiply that across millions of households and the waste is staggering.',
-    stat: '$30+',
-    statLabel: 'wasted per household every year',
-    color: '#FFA502',
-  },
-  {
-    icon: <Leaf size={36} />,
-    emoji: '🌍',
-    title: 'Environmental Impact',
-    desc: 'Unnecessary phantom power consumption increases carbon footprints. Small changes in charging habits can significantly reduce emissions.',
-    stat: '50M',
-    statLabel: 'tons of e-waste from degraded batteries yearly',
-    color: '#2ED573',
-  },
-];
+const ProblemSection = () => (
+  <section className="section" id="problem">
+    <div className="container">
+      <div className="text-center" style={{ marginBottom: '70px' }}>
+        <div className="section-label"><AlertTriangle size={14} /> The Silent Killer</div>
+        <h2 className="section-title">The <span className="orange-text">60%</span> Problem.</h2>
+        <p className="section-subtitle" style={{ margin: '0 auto' }}>
+          Did you know over 60% of users charge their phones overnight? This leads to "Battery Stress,"
+          constant trickle-charging, and dangerous overheating.
+        </p>
+      </div>
 
-export default function ProblemSection() {
-  return (
-    <section className="section problem-section" id="problem">
-      <div className="container">
-        <div className="text-center">
-          <div className="section-label">⚠️ The Problem</div>
-          <h2 className="section-title">
-            Your Charging Habit Is <span className="gradient-text">Hurting You</span>
-          </h2>
-          <p className="section-subtitle">
-            Most people charge overnight without thinking twice. But this everyday habit
-            is silently destroying your battery and draining your wallet.
-          </p>
-          <div className="glow-divider" />
+      <div className="problem-grid">
+        <div>
+          <img
+            src="/phone_overheating_heatmap_1778656797359.png"
+            alt="Smartphone overheating heat-map at 3 AM"
+            className="problem-img"
+          />
         </div>
 
-        <div className="problem-grid">
-          {problems.map((p) => (
-            <div key={p.title} className="problem-card glass-card">
-              <div className="problem-card__icon" style={{ '--card-color': p.color }}>
-                {p.emoji}
-              </div>
-              <h3 className="problem-card__title">{p.title}</h3>
-              <p className="problem-card__desc">{p.desc}</p>
-              <div className="problem-card__stat">
-                <span className="problem-card__stat-value" style={{ color: p.color }}>
-                  {p.stat}
-                </span>
-                <span className="problem-card__stat-label">{p.statLabel}</span>
-              </div>
-            </div>
-          ))}
+        <div>
+          <div className="problem-stat-big">60%</div>
+          <p style={{ color: 'var(--muted)', marginBottom: '8px', fontSize: '1.1rem' }}>
+            of smartphone users charge overnight
+          </p>
+          <p style={{ color: 'var(--muted)', marginBottom: '32px' }}>
+            keeping batteries pinned at 100% for 6–8 hours, creating sustained heat stress that permanently degrades capacity.
+          </p>
+
+          <div className="problem-quote">
+            <p>
+              "Lithium-ion batteries degrade 2× faster when kept at 100% charge for hours on end."
+            </p>
+            <span>— Battery University</span>
+          </div>
         </div>
       </div>
-    </section>
-  );
-}
+    </div>
+  </section>
+);
+
+export default ProblemSection;

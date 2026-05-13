@@ -1,104 +1,71 @@
-.solution-section {
-  background: linear-gradient(180deg, #0d0d0d 0%, #0B0B0B 100%);
+/* SolutionSection */
+.solution-bg {
+  background:
+    radial-gradient(ellipse 60% 50% at 20% 50%, rgba(91,192,190,0.07) 0%, transparent 60%);
 }
-
-.solution-inner {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 72px;
-  align-items: start;
-}
-
-.solution-left {
-  position: sticky;
-  top: 100px;
-}
-
-.solution-highlights {
-  margin-top: 32px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.solution-highlight {
+.cable-demo {
   display: flex;
   align-items: center;
-  gap: 12px;
-  font-size: 0.92rem;
-  color: var(--muted);
-  transition: var(--transition);
+  justify-content: center;
+  gap: 0;
+  margin: 60px auto;
+  max-width: 600px;
 }
-
-.solution-highlight:hover {
-  color: var(--text);
-}
-
-.solution-highlight__icon {
-  color: var(--green);
-  flex-shrink: 0;
-}
-
-.solution-steps {
+.phone-mock {
+  width: 120px;
+  height: 220px;
+  background: #1c2541;
+  border-radius: 22px;
+  border: 3px solid #3a506b;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  align-items: center;
+  justify-content: center;
   position: relative;
+  box-shadow: 0 0 30px rgba(91,192,190,0.15);
 }
-
-.solution-step {
-  padding: 28px 24px;
-  position: relative;
-}
-
-.solution-step__number {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  color: var(--blue);
-  margin-bottom: 16px;
-  background: rgba(0, 123, 255, 0.1);
-  border: 1px solid rgba(0, 123, 255, 0.2);
-  border-radius: 100px;
-  padding: 4px 12px;
-  width: fit-content;
-}
-
-.solution-step__content {
-  display: flex;
-  gap: 16px;
-  align-items: flex-start;
-}
-
-.solution-step__emoji {
+.phone-screen-text {
+  font-family: 'Rajdhani', sans-serif;
   font-size: 2rem;
+  font-weight: 800;
+  color: var(--cyan);
   line-height: 1;
-  flex-shrink: 0;
 }
-
-.solution-step__title {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 1.1rem;
-  font-weight: 700;
-  margin-bottom: 8px;
-}
-
-.solution-step__desc {
-  font-size: 0.88rem;
+.phone-screen-sub {
+  font-size: 0.7rem;
   color: var(--muted);
-  line-height: 1.7;
 }
-
-.solution-step__connector {
+.phone-port {
+  position: absolute;
+  bottom: -8px;
+  width: 30px;
+  height: 8px;
+  background: #3a506b;
+  border-radius: 4px;
+}
+.cable-wire {
+  height: 8px;
+  background: linear-gradient(90deg, #3a506b, var(--cyan), #3a506b);
+  border-radius: 4px;
+  transition: width 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.cable-device-icon {
+  width: 80px;
+  height: 60px;
+  background: linear-gradient(135deg, var(--bg) 0%, #1c2541 100%);
+  border: 2px solid var(--cyan);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 20px rgba(91,192,190,0.3);
+}
+.snap-label {
   text-align: center;
-  color: var(--blue);
-  font-size: 1.2rem;
-  padding: 4px 0;
-  opacity: 0.6;
-}
-
-@media (max-width: 900px) {
-  .solution-inner { grid-template-columns: 1fr; gap: 40px; }
-  .solution-left { position: static; }
+  color: var(--cyan);
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  margin-top: 16px;
 }

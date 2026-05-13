@@ -1,83 +1,126 @@
-import { CheckCircle } from 'lucide-react';
+import React, { useEffect, useRef } from 'react';
 import './SolutionSection.css';
+import { Power, Wifi, Sliders, Shield, Cable } from 'lucide-react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-const steps = [
+gsap.registerPlugin(ScrollTrigger);
+
+const features = [
   {
-    step: '01',
-    title: 'Set Your Timer',
-    desc: 'Dial in your desired charge duration — from 30 minutes to 8 hours. One simple knob, total control.',
-    icon: '⏱️',
+    icon: <Power size={22} />,
+    title: 'Physical Ejection (The "Snap")',
+    desc: 'A custom servo-actuator gently disconnects the cable so no electricity flows. No more trickle charging.',
   },
   {
-    step: '02',
-    title: 'Plug In & Forget',
-    desc: 'Connect your charger to CABLESNAP, then plug your phone in as usual. No app, no pairing, no fuss.',
-    icon: '🔌',
+    icon: <Wifi size={22} />,
+    title: 'IoT Intelligence',
+    desc: "Powered by an ESP32 microcontroller and Wi-Fi, sync your phone's battery health directly to the hardware.",
   },
   {
-    step: '03',
-    title: 'Auto Disconnects',
-    desc: 'When time is up, CABLESNAP cuts the power automatically — protecting your battery while you sleep.',
-    icon: '✅',
+    icon: <Sliders size={22} />,
+    title: 'Custom Cut-off Limits',
+    desc: 'Use the CableSnap App to set your charging ceiling (e.g., 80% or 90%) to maximise long-term battery health.',
+  },
+  {
+    icon: <Shield size={22} />,
+    title: 'Fire Safety',
+    desc: 'Built-in relays and MOSFETs prevent overcurrent and reduce the risk of charging-related fires.',
   },
 ];
 
-const highlights = [
-  'Works with any smartphone brand',
-  'No app or Wi-Fi required',
-  'Plug-and-use — zero setup',
-  'Works with any standard charger',
-  'Safe, certified circuitry',
-  'Compact & travel-friendly',
-];
+const SolutionSection = () => {
+  const cableRef = useRef(null);
+  const sectionRef = useRef(null);
 
-export default function SolutionSection() {
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Snap cable animation on scroll
+      gsap.to(cableRef.current, {
+        width: 10,
+        duration: 0.6,
+        ease: 'power2.inOut',
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top center',
+          end: 'center center',
+          toggleActions: 'play reverse play reverse',
+        },
+      });
+
+      // Staggered cards
+      gsap.fromTo(
+        '.sol-card',
+        { y: 60, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          stagger: 0.15,
+          duration: 0.8,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: '.sol-grid',
+            start: 'top 80%',
+          },
+        }
+      );
+    }, sectionRef);
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section className="section solution-section" id="solution">
+    <section className="section solution-bg" ref={sectionRef} id="solution">
       <div className="container">
-        <div className="solution-inner">
-          {/* Left: text */}
-          <div className="solution-left">
-            <div className="section-label">✅ The Solution</div>
-            <h2 className="section-title">
-              Smart Charging,<br />
-              <span className="gradient-text">Simplified.</span>
-            </h2>
-            <p className="section-subtitle">
-              CABLESNAP works with any phone, any charger — no software, no syncing.
-              Just hardware-grade intelligence in a compact plug.
-            </p>
+        <div className="text-center" style={{ marginBottom: '60px' }}>
+          <div className="section-label"><Cable size={14} /> Intelligent Protection</div>
+          <h2 className="section-title">Smart Monitoring Meets Physical Action.</h2>
+          <p className="section-subtitle" style={{ margin: '0 auto' }}>
+            CableSnap is the only device that combines real-time IoT battery monitoring with a
+            physical servo ejection mechanism—automating what you keep forgetting to do.
+          </p>
+        </div>
 
-            <ul className="solution-highlights">
-              {highlights.map((h) => (
-                <li key={h} className="solution-highlight">
-                  <CheckCircle size={16} className="solution-highlight__icon" />
-                  {h}
-                </li>
-              ))}
-            </ul>
+        {/* Scroll-Trigger Cable Animation */}
+        <div className="cable-demo" ref={sectionRef}>
+          <div className="phone-mock">
+            <div className="phone-screen-text">100%</div>
+            <div className="phone-screen-sub">Charged ✓</div>
+            <div className="phone-port"></div>
           </div>
+          <div
+            ref={cableRef}
+            className="cable-wire"
+            style={{ width: '140px' }}
+          ></div>
+          <div className="cable-device-icon">
+            <Cable size={28} color="var(--cyan)" />
+          </div>
+        </div>
+        <p className="snap-label">↑ Scroll to watch the cable snap back automatically</p>
 
-          {/* Right: steps */}
-          <div className="solution-steps">
-            {steps.map((s, i) => (
-              <div key={s.step} className="solution-step glass-card">
-                <div className="solution-step__number">{s.step}</div>
-                <div className="solution-step__content">
-                  <div className="solution-step__emoji">{s.icon}</div>
-                  <div>
-                    <h3 className="solution-step__title">{s.title}</h3>
-                    <p className="solution-step__desc">{s.desc}</p>
-                  </div>
-                </div>
-                {i < steps.length - 1 && (
-                  <div className="solution-step__connector">↓</div>
-                )}
-              </div>
-            ))}
-          </div>
+        {/* Features */}
+        <div
+          className="sol-grid"
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+            gap: '28px',
+            marginTop: '80px',
+          }}
+        >
+          {features.map((f, i) => (
+            <div key={i} className="glass-card sol-card" style={{ opacity: 0 }}>
+              <div className="spec-icon" style={{ marginBottom: '20px' }}>{f.icon}</div>
+              <h3 style={{ color: 'var(--white)', marginBottom: '12px', fontFamily: 'Rajdhani', fontSize: '1.25rem', fontWeight: 700 }}>
+                {f.title}
+              </h3>
+              <p style={{ color: 'var(--muted)', lineHeight: '1.7' }}>{f.desc}</p>
+            </div>
+          ))}
         </div>
       </div>
     </section>
   );
-}
+};
+
+export default SolutionSection;

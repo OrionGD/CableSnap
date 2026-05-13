@@ -1,77 +1,40 @@
-import { Timer, Plug, Shield, Zap, Star, Globe } from 'lucide-react';
+import React from 'react';
 import './FeaturesSection.css';
+import { Cpu, Settings2, Globe, Box, Activity } from 'lucide-react';
 
-const features = [
-  {
-    icon: <Timer size={28} />,
-    title: 'Auto-Disconnect Timer',
-    desc: 'Set your desired charge window. CABLESNAP cuts power the moment it expires — every single time.',
-    color: '#007BFF',
-  },
-  {
-    icon: <Globe size={28} />,
-    title: 'Universal Compatibility',
-    desc: 'Works with iPhones, Androids, iPads, earbuds — any device that charges via a standard adapter.',
-    color: '#00FF9C',
-  },
-  {
-    icon: <Shield size={28} />,
-    title: 'Battery Protection',
-    desc: 'Prevents overcharging cycles that degrade lithium-ion cells. Keep your battery above 80% health for longer.',
-    color: '#FFD700',
-  },
-  {
-    icon: <Zap size={28} />,
-    title: 'Energy Saving',
-    desc: 'No more phantom loads pulling power overnight. Every watt counts — CABLESNAP makes sure none are wasted.',
-    color: '#FF6B6B',
-  },
-  {
-    icon: <Plug size={28} />,
-    title: 'Plug-and-Use',
-    desc: 'No app, no Bluetooth, no Wi-Fi. Just plug it in and let the hardware do the work — forever.',
-    color: '#A29BFE',
-  },
-  {
-    icon: <Star size={28} />,
-    title: 'Premium Build Quality',
-    desc: 'Flame-retardant housing, surge protection, and certified safe circuitry built to last for years.',
-    color: '#FD79A8',
-  },
+const specs = [
+  { icon: <Cpu size={22} />, label: 'Processor',     value: 'ESP32 IoT Microcontroller' },
+  { icon: <Settings2 size={22} />, label: 'Mechanism', value: 'Precision High-Torque Servo Actuator' },
+  { icon: <Globe size={22} />, label: 'Connectivity', value: '2.4 GHz Wi-Fi & Android API Integration' },
+  { icon: <Box size={22} />,  label: 'Build',         value: 'Sustainable 3D-Printed Protective Housing' },
+  { icon: <Activity size={22} />, label: 'Feedback',  value: 'Multi-color LED Charging Status Indicators' },
 ];
 
-export default function FeaturesSection() {
-  return (
-    <section className="section features-section" id="features">
-      <div className="container">
-        <div className="text-center">
-          <div className="section-label">⚡ Features</div>
-          <h2 className="section-title">
-            Everything You Need,<br />
-            <span className="gradient-text">Nothing You Don't.</span>
-          </h2>
-          <p className="section-subtitle">
-            CABLESNAP is engineered to do one thing perfectly —
-            protect your battery and save energy, automatically.
-          </p>
-          <div className="glow-divider" />
-        </div>
-
-        <div className="features-grid">
-          {features.map((f) => (
-            <div key={f.title} className="feature-card glass-card">
-              <div
-                className="feature-card__icon"
-                style={{ '--feat-color': f.color }}
-              >
-                {f.icon}
-              </div>
-              <h3 className="feature-card__title">{f.title}</h3>
-              <p className="feature-card__desc">{f.desc}</p>
-            </div>
-          ))}
-        </div>
+const FeaturesSection = () => (
+  <section className="section" id="specs"
+    style={{ background: 'linear-gradient(180deg, var(--bg) 0%, rgba(6,10,23,0.8) 100%)' }}
+  >
+    <div className="container">
+      <div className="text-center" style={{ marginBottom: '70px' }}>
+        <h2 className="section-title">Built for Performance.</h2>
+        <p className="section-subtitle" style={{ margin: '0 auto' }}>
+          Premium hardware engineered for your smartphone's longevity.
+        </p>
       </div>
-    </section>
-  );
-}
+
+      <div className="specs-wrapper">
+        {specs.map((s, i) => (
+          <div key={i} className="spec-item reveal">
+            <div className="spec-icon">{s.icon}</div>
+            <div className="spec-text">
+              <h4>{s.label}</h4>
+              <p>{s.value}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+);
+
+export default FeaturesSection;

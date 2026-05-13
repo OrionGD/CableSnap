@@ -1,148 +1,82 @@
-import { useEffect, useRef } from 'react';
-import { ArrowRight, Play, Zap } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
 import './HeroSection.css';
+import { Zap, ArrowRight, ShoppingCart } from 'lucide-react';
 
-export default function HeroSection() {
-  const particlesRef = useRef(null);
-
+const Navbar = () => {
+  const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
-    const canvas = particlesRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    let animId;
-
-    const resize = () => {
-      canvas.width = canvas.offsetWidth;
-      canvas.height = canvas.offsetHeight;
-    };
-    resize();
-    window.addEventListener('resize', resize);
-
-    const particles = Array.from({ length: 60 }, () => ({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      r: Math.random() * 1.5 + 0.3,
-      vx: (Math.random() - 0.5) * 0.3,
-      vy: (Math.random() - 0.5) * 0.3,
-      color: Math.random() > 0.5 ? '#007BFF' : '#00FF9C',
-      alpha: Math.random() * 0.6 + 0.2,
-    }));
-
-    const draw = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particles.forEach((p) => {
-        p.x += p.vx;
-        p.y += p.vy;
-        if (p.x < 0) p.x = canvas.width;
-        if (p.x > canvas.width) p.x = 0;
-        if (p.y < 0) p.y = canvas.height;
-        if (p.y > canvas.height) p.y = 0;
-
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = p.color;
-        ctx.globalAlpha = p.alpha;
-        ctx.fill();
-      });
-      ctx.globalAlpha = 1;
-      animId = requestAnimationFrame(draw);
-    };
-    draw();
-
-    return () => {
-      cancelAnimationFrame(animId);
-      window.removeEventListener('resize', resize);
-    };
+    const onScroll = () => setScrolled(window.scrollY > 30);
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
-
   return (
-    <section className="hero" id="hero">
-      <canvas ref={particlesRef} className="hero__particles" />
-
-      {/* Glow blobs */}
-      <div className="hero__blob hero__blob--blue" />
-      <div className="hero__blob hero__blob--green" />
-
-      <div className="container hero__inner">
-        {/* Badge */}
-        <div className="hero__badge">
-          <Zap size={14} />
-          <span>Smart Charging Technology</span>
+    <nav className={`navbar${scrolled ? ' scrolled' : ''}`}>
+      <div className="container navbar-inner">
+        <span className="navbar-logo">CABLE<span style={{color:'var(--white)'}}>SNAP</span></span>
+        <div className="navbar-links">
+          <a href="#problem">Problem</a>
+          <a href="#solution">Solution</a>
+          <a href="#specs">Specs</a>
+          <a href="#trust">About</a>
+          <a href="#pricing">Pricing</a>
         </div>
-
-        {/* Headline */}
-        <h1 className="hero__headline">
-          Stop Overcharging.<br />
-          <span className="gradient-text">Start Smart Charging.</span>
-        </h1>
-
-        <p className="hero__sub">
-          A smart plug-and-use device that automatically disconnects your charger
-          at the perfect time — protecting your battery and saving electricity.
-        </p>
-
-        {/* Stats row */}
-        <div className="hero__stats">
-          {[
-            { value: '40%', label: 'Longer Battery Life' },
-            { value: '↓30%', label: 'Less Energy Used' },
-            { value: '100%', label: 'Universal Compatible' },
-          ].map((s) => (
-            <div key={s.label} className="hero__stat">
-              <span className="hero__stat-value">{s.value}</span>
-              <span className="hero__stat-label">{s.label}</span>
-            </div>
-          ))}
-        </div>
-
-        {/* CTA buttons */}
-        <div className="hero__ctas">
-          <a href="#cta" className="btn btn-primary">
-            Get Early Access <ArrowRight size={18} />
-          </a>
-          <a href="#demo" className="btn btn-outline">
-            <span className="hero__play-btn">
-              <Play size={12} fill="currentColor" />
-            </span>
-            Watch Demo
-          </a>
-        </div>
-
-        {/* Device visual */}
-        <div className="hero__device-wrapper">
-          <div className="hero__device">
-            <div className="hero__device-ring hero__device-ring--1" />
-            <div className="hero__device-ring hero__device-ring--2" />
-            <div className="hero__device-ring hero__device-ring--3" />
-            <div className="hero__device-core">
-              <Zap size={40} className="hero__device-icon" />
-              <span className="hero__device-label">AUTO OFF</span>
-            </div>
-            <div className="hero__device-dot hero__device-dot--1" />
-            <div className="hero__device-dot hero__device-dot--2" />
-            <div className="hero__device-dot hero__device-dot--3" />
-          </div>
-
-          <div className="hero__floating hero__floating--1">
-            <span className="hero__floating-icon">🔋</span>
-            <span>Battery Protected</span>
-          </div>
-          <div className="hero__floating hero__floating--2">
-            <span className="hero__floating-icon">⚡</span>
-            <span>Energy Saved</span>
-          </div>
-          <div className="hero__floating hero__floating--3">
-            <span className="hero__floating-icon">🌿</span>
-            <span>Eco Friendly</span>
-          </div>
-        </div>
+        <button className="btn btn-primary" style={{padding:'12px 28px'}}>
+          <ShoppingCart size={16} /> Pre-Order
+        </button>
       </div>
-
-      {/* Scroll hint */}
-      <div className="hero__scroll">
-        <div className="hero__scroll-line" />
-        <span>Scroll to explore</span>
-      </div>
-    </section>
+    </nav>
   );
-}
+};
+
+const HeroSection = () => {
+  return (
+    <>
+      <Navbar />
+      <section className="hero" id="hero">
+        <div className="container">
+          <div className="hero-grid">
+            {/* Content */}
+            <div>
+              <div className="hero-badge">
+                <Zap size={14} fill="currentColor" /> World's First Smart Cable Ejector
+              </div>
+              <h1 className="hero-headline">
+                Stop Killing Your<br />
+                <span className="gradient-text">Battery</span> While You Sleep.
+              </h1>
+              <p className="hero-sub">
+                The world's first smart charging system that physically disconnects your cable when your phone is full.
+                Protect your battery health, reduce overheating, and extend your device's life—automatically.
+              </p>
+              <div className="hero-btns">
+                <button className="btn btn-primary">
+                  Pre-Order Now for ₹3,420 <ArrowRight size={18} />
+                </button>
+                <button className="btn btn-outline">
+                  Get Early Access
+                </button>
+              </div>
+              <div className="led-strip">
+                <div className="led led-green" title="Charged"></div>
+                <div className="led led-cyan"  title="Monitoring"></div>
+                <div className="led led-orange" title="Alert"></div>
+                <span style={{fontSize:'0.8rem', color:'var(--muted)', marginLeft:'8px', alignSelf:'center'}}>Multi-LED Status Indicators</span>
+              </div>
+            </div>
+
+            {/* Visual */}
+            <div className="hero-visual">
+              <div className="hero-glow"></div>
+              <img
+                src="/cablesnap_hero_device_1778656769196.png"
+                alt="CableSnap Device — 3D Render with Glowing LED Indicators"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+};
+
+export default HeroSection;
