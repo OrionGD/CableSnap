@@ -25,10 +25,10 @@ const ProblemSection = () => (
 
         <div>
           <div className="problem-stat-big">60%</div>
-          <p style={{ color: 'var(--muted)', marginBottom: '8px', fontSize: '1.1rem' }}>
+          <p style={{ color: 'var(--text-secondary)', marginBottom: '8px', fontSize: '1.1rem' }}>
             of smartphone users charge overnight
           </p>
-          <p style={{ color: 'var(--muted)', marginBottom: '32px' }}>
+          <p style={{ color: 'var(--text-secondary)', marginBottom: '32px' }}>
             keeping batteries pinned at 100% for 6–8 hours, creating sustained heat stress that permanently degrades capacity.
           </p>
 

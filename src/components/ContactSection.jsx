@@ -12,15 +12,48 @@ import './ContactSection.css';
 
 export default function ContactSection() {
   const [form, setForm] = useState({ name: '', email: '', message: '' });
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState('');
 
   const handleChange = (e) =>
     setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!form.name || !form.email || !form.message) return;
-    setSubmitted(true);
+    
+    setIsSubmitting(true);
+    setError('');
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: "YOUR_ACCESS_KEY_HERE", // User should replace this
+          name: form.name,
+          email: form.email,
+          message: form.message,
+          subject: `New Message from CableSnap: ${form.name}`,
+        }),
+      });
+
+      const result = await response.json();
+      if (result.success) {
+        setSubmitted(true);
+        setForm({ name: '', email: '', message: '' });
+      } else {
+        setError('Something went wrong. Please try again.');
+      }
+    } catch (err) {
+      setError('Failed to connect. Please check your internet.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -91,6 +124,8 @@ export default function ContactSection() {
               <form className="contact-form" onSubmit={handleSubmit}>
                 <h3 className="contact-form__title">Send a Message</h3>
 
+                {error && <div className="form-error">{error}</div>}
+
                 <div className="contact-form__row">
                   <div className="contact-form__group">
                     <label htmlFor="cs-name">Name</label>
@@ -131,8 +166,12 @@ export default function ContactSection() {
                   />
                 </div>
 
-                <button type="submit" className="btn btn-primary contact-form__submit">
-                  Send Message <Send size={16} />
+                <button 
+                  type="submit" 
+                  className={`btn btn-primary contact-form__submit ${isSubmitting ? 'loading' : ''}`}
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? 'Sending...' : 'Send Message'} <Send size={16} />
                 </button>
               </form>
             )}

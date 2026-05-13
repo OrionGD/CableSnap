@@ -1,17 +1,25 @@
-/* ── Navbar ────────────────────────────────────────────────── */
+/* ── Navbar (Hero Internal) ─────────────────────────────────── */
 .navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  position: absolute;
+  top: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 48px);
+  max-width: 1200px;
   z-index: 100;
-  padding: 20px 0;
-  transition: background 0.4s ease, box-shadow 0.4s ease;
+  padding: 12px 32px;
+  background: rgba(107, 115, 120, 0.3);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(179, 192, 203, 0.2);
+  border-radius: 100px;
+  transition: var(--transition);
+  box-shadow: var(--shadow);
 }
 .navbar.scrolled {
-  background: rgba(11, 19, 43, 0.92);
-  backdrop-filter: blur(20px);
-  box-shadow: 0 1px 0 rgba(91, 192, 190, 0.15);
+  top: 12px;
+  background: rgba(61, 62, 59, 0.8);
+  border-color: var(--border-color);
+  padding: 10px 32px;
 }
 .navbar-inner {
   display: flex;
@@ -22,7 +30,7 @@
   font-family: 'Rajdhani', sans-serif;
   font-size: 1.8rem;
   font-weight: 700;
-  color: var(--cyan);
+  color: var(--text-primary);
   letter-spacing: 0.05em;
 }
 .navbar-links {
@@ -33,69 +41,73 @@
   font-family: 'Rajdhani', sans-serif;
   font-size: 1rem;
   font-weight: 600;
-  color: var(--muted);
+  color: var(--text-secondary);
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  transition: color 0.3s;
+  transition: var(--transition);
 }
-.navbar-links a:hover { color: var(--cyan); }
+.navbar-links a:hover { color: var(--text-primary); }
 
 /* ── Hero ──────────────────────────────────────────────────── */
 .hero {
   min-height: 100vh;
   display: flex;
   align-items: center;
-  padding-top: 100px;
+  padding: clamp(100px, 15vh, 160px) 0 60px;
   background:
-    radial-gradient(ellipse 80% 60% at 65% 20%, rgba(91,192,190,0.12) 0%, transparent 70%),
-    radial-gradient(ellipse 50% 40% at 10% 85%, rgba(255,107,53,0.07) 0%, transparent 60%);
+    radial-gradient(ellipse 80% 60% at 65% 20%, rgba(132, 148, 160, 0.03) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 40% at 10% 85%, rgba(111, 124, 134, 0.02) 0%, transparent 60%);
 }
 
 .hero-grid {
   display: grid;
-  grid-template-columns: 1.2fr 0.9fr;
-  gap: 60px;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 500px), 1fr));
+  gap: clamp(40px, 8vw, 80px);
   align-items: center;
 }
 
 .hero-badge {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  font-family: 'Rajdhani', sans-serif;
-  font-size: 0.85rem;
+  gap: 0.5rem;
+  font-family: var(--font-ui);
+  font-size: clamp(0.75rem, 2vw, 0.85rem);
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: var(--orange);
-  background: rgba(255,107,53,0.1);
-  border: 1px solid rgba(255,107,53,0.3);
-  border-radius: 100px;
-  padding: 8px 20px;
-  margin-bottom: 28px;
+  color: var(--neon-accent);
+  background: rgba(0, 243, 255, 0.05);
+  border: 1px solid var(--neon-accent);
+  padding: 0.5rem 1.25rem;
+  margin-bottom: 2rem;
   width: fit-content;
+  clip-path: polygon(5% 0, 100% 0, 100% 70%, 95% 100%, 0 100%, 0 30%);
 }
 
 .hero-headline {
-  font-family: 'Rajdhani', sans-serif;
-  font-size: clamp(2.8rem, 6vw, 5rem);
-  font-weight: 700;
+  font-family: var(--font-heading);
+  font-size: clamp(2.5rem, 7vw, 5.5rem);
+  font-weight: 400;
   line-height: 1.05;
-  color: var(--white);
-  margin-bottom: 24px;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
 }
 
 .hero-sub {
-  font-size: 1.15rem;
-  color: var(--muted);
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 2.5vw, 1.15rem);
+  color: var(--text-secondary);
   line-height: 1.8;
-  max-width: 560px;
-  margin-bottom: 44px;
+  max-width: 600px;
+  margin-bottom: 3rem;
+  letter-spacing: 0.05em;
 }
 
 .hero-btns {
   display: flex;
-  gap: 16px;
+  gap: 1rem;
   flex-wrap: wrap;
 }
 
@@ -105,19 +117,21 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
 }
 .hero-visual img {
   width: 100%;
-  max-width: 480px;
-  border-radius: 24px;
+  max-width: min(100%, 500px);
+  border-radius: var(--radius);
   animation: float 6s ease-in-out infinite;
-  filter: drop-shadow(0 30px 60px rgba(91,192,190,0.25));
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border-color);
 }
 .hero-glow {
   position: absolute;
   width: 400px;
   height: 400px;
-  background: radial-gradient(circle, rgba(91,192,190,0.2) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(132, 148, 160, 0.05) 0%, transparent 70%);
   pointer-events: none;
 }
 
@@ -133,9 +147,9 @@
   border-radius: 50%;
   animation: pulse-led 1.8s ease-in-out infinite;
 }
-.led-green  { background: #00ff88; box-shadow: 0 0 8px #00ff88; }
-.led-cyan   { background: var(--cyan); box-shadow: 0 0 8px var(--cyan); animation-delay: 0.3s; }
-.led-orange { background: var(--orange); box-shadow: 0 0 8px var(--orange); animation-delay: 0.6s; }
+.led-green  { background: #1DB954; box-shadow: 0 0 8px #1DB954; }
+.led-cyan   { background: var(--text-primary); box-shadow: 0 0 8px var(--text-primary); animation-delay: 0.3s; }
+.led-orange { background: var(--text-secondary); box-shadow: 0 0 8px var(--text-secondary); animation-delay: 0.6s; }
 
 @keyframes pulse-led {
   0%, 100% { opacity: 1; transform: scale(1); }

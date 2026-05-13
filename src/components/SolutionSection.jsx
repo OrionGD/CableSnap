@@ -93,7 +93,7 @@ const SolutionSection = () => {
             style={{ width: '140px' }}
           ></div>
           <div className="cable-device-icon">
-            <Cable size={28} color="var(--cyan)" />
+            <Cable size={28} color="var(--text-primary)" />
           </div>
         </div>
         <p className="snap-label">↑ Scroll to watch the cable snap back automatically</p>
@@ -111,10 +111,10 @@ const SolutionSection = () => {
           {features.map((f, i) => (
             <div key={i} className="glass-card sol-card" style={{ opacity: 0 }}>
               <div className="spec-icon" style={{ marginBottom: '20px' }}>{f.icon}</div>
-              <h3 style={{ color: 'var(--white)', marginBottom: '12px', fontFamily: 'Rajdhani', fontSize: '1.25rem', fontWeight: 700 }}>
+              <h3 style={{ color: 'var(--text-primary)', marginBottom: '12px', fontFamily: 'Rajdhani', fontSize: '1.25rem', fontWeight: 700 }}>
                 {f.title}
               </h3>
-              <p style={{ color: 'var(--muted)', lineHeight: '1.7' }}>{f.desc}</p>
+              <p style={{ color: 'var(--text-secondary)', lineHeight: '1.7' }}>{f.desc}</p>
             </div>
           ))}
         </div>

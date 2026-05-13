@@ -1,8 +1,10 @@
 /* SolutionSection */
+
 .solution-bg {
   background:
-    radial-gradient(ellipse 60% 50% at 20% 50%, rgba(91,192,190,0.07) 0%, transparent 60%);
+    radial-gradient(ellipse 60% 50% at 20% 50%, rgba(132, 148, 160, 0.02) 0%, transparent 60%);
 }
+
 .cable-demo {
   display: flex;
   align-items: center;
@@ -11,61 +13,77 @@
   margin: 60px auto;
   max-width: 600px;
 }
+
 .phone-mock {
   width: 120px;
   height: 220px;
-  background: #1c2541;
-  border-radius: 22px;
-  border: 3px solid #3a506b;
+  background: var(--bg-secondary);
+  border-radius: var(--radius);
+  border: 3px solid var(--border-color);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   position: relative;
-  box-shadow: 0 0 30px rgba(91,192,190,0.15);
+  box-shadow: var(--shadow);
 }
+
 .phone-screen-text {
-  font-family: 'Rajdhani', sans-serif;
+  font-family: var(--font-ui);
   font-size: 2rem;
   font-weight: 800;
-  color: var(--cyan);
+  color: var(--neon-accent);
   line-height: 1;
+  text-shadow: 0 0 10px var(--neon-glow);
 }
+
 .phone-screen-sub {
+  font-family: var(--font-ui);
   font-size: 0.7rem;
-  color: var(--muted);
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
 }
+
 .phone-port {
   position: absolute;
   bottom: -8px;
   width: 30px;
   height: 8px;
-  background: #3a506b;
-  border-radius: 4px;
+  background: var(--neon-accent);
+  border-radius: 0;
+  box-shadow: 0 0 10px var(--neon-glow);
 }
+
 .cable-wire {
-  height: 8px;
-  background: linear-gradient(90deg, #3a506b, var(--cyan), #3a506b);
-  border-radius: 4px;
+  height: 6px;
+  background: linear-gradient(90deg, var(--bg-tertiary), var(--neon-accent), var(--bg-tertiary));
+  border-radius: 0;
   transition: width 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+  box-shadow: 0 0 5px var(--neon-glow);
 }
+
 .cable-device-icon {
   width: 80px;
   height: 60px;
-  background: linear-gradient(135deg, var(--bg) 0%, #1c2541 100%);
-  border: 2px solid var(--cyan);
-  border-radius: 14px;
+  background: linear-gradient(135deg, var(--bg-surface) 0%, var(--bg-tertiary) 100%);
+  border: 2px solid var(--neon-accent);
+  border-radius: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 0 20px rgba(91,192,190,0.3);
+  box-shadow: 0 0 20px var(--neon-glow);
+  clip-path: polygon(10% 0, 100% 0, 100% 80%, 90% 100%, 0 100%, 0 20%);
 }
+
 .snap-label {
   text-align: center;
-  color: var(--cyan);
-  font-family: 'Rajdhani', sans-serif;
+  color: var(--neon-accent);
+  font-family: var(--font-ui);
   font-size: 1rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   margin-top: 16px;
+  text-transform: uppercase;
+  text-shadow: 0 0 10px var(--neon-glow);
 }

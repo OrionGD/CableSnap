@@ -1,123 +1,118 @@
 .navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  position: absolute;
+  top: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 48px);
+  max-width: 1200px;
   z-index: 100;
-  padding: 20px 0;
+  padding: 12px 32px;
+  background: rgba(15, 17, 18, 0.7);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border-color);
+  border-radius: 0;
   transition: var(--transition);
+  box-shadow: 0 0 20px rgba(0, 243, 255, 0.1);
+  clip-path: polygon(2% 0, 98% 0, 100% 30%, 100% 100%, 0 100%, 0 30%);
 }
 
 .navbar--scrolled {
-  background: rgba(11, 11, 11, 0.85);
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--border);
-  padding: 12px 0;
-  box-shadow: 0 4px 40px rgba(0, 0, 0, 0.6);
+  top: 0;
+  width: 100%;
+  background: rgba(1, 1, 1, 0.9);
+  border-color: var(--neon-accent);
 }
 
 .navbar__inner {
   display: flex;
   align-items: center;
   gap: 40px;
+  justify-content: space-between;
 }
 
 .navbar__logo {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 1.3rem;
-  font-weight: 700;
-  letter-spacing: 0.05em;
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
   flex-shrink: 0;
+  color: var(--text-primary);
+  text-shadow: 0 0 10px rgba(132, 148, 160, 0.3);
 }
 
-.navbar__logo-icon {
-  color: var(--blue);
-  filter: drop-shadow(0 0 8px var(--blue));
-}
-
-.navbar__logo-snap {
-  color: var(--green);
-}
-
-.navbar__links {
+.nav-links {
   display: flex;
   gap: 32px;
-  margin-left: auto;
-  margin-right: 32px;
 }
 
-.navbar__link {
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: var(--muted);
+.nav-link {
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-secondary);
   transition: var(--transition);
-  position: relative;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
 }
 
-.navbar__link::after {
-  content: '';
-  position: absolute;
-  bottom: -4px;
+.nav-link:hover {
+  color: var(--neon-accent);
+  text-shadow: 0 0 10px var(--neon-glow);
+}
+
+.nav-cta {
+  background: var(--bg-surface);
+  color: var(--neon-accent);
+  padding: 10px 24px;
+  border-radius: 0;
+  font-weight: 700;
+  font-size: 0.85rem;
+  transition: var(--transition);
+  border: 1px solid var(--neon-accent);
+  clip-path: polygon(15% 0, 100% 0, 100% 70%, 85% 100%, 0 100%, 0 30%);
+}
+
+.nav-cta:hover {
+  background: var(--neon-accent);
+  color: #000;
+  box-shadow: 0 0 20px var(--neon-glow);
+}
+
+/* Mobile Nav */
+.mobile-nav {
+  display: none;
+  position: fixed;
+  top: 80px;
   left: 0;
-  width: 0;
-  height: 2px;
-  background: var(--green);
-  transition: var(--transition);
-  border-radius: 1px;
-}
-
-.navbar__link:hover {
-  color: var(--text);
-}
-
-.navbar__link:hover::after {
   width: 100%;
+  background: var(--bg-primary);
+  border-top: 1px solid var(--neon-accent);
+  padding: 40px 20px;
+  z-index: 99;
 }
 
-.navbar__cta {
-  padding: 10px 22px;
-  font-size: 0.875rem;
-  flex-shrink: 0;
-}
-
-.navbar__hamburger {
-  display: none;
-  background: none;
-  color: var(--text);
-  margin-left: auto;
-}
-
-.navbar__drawer {
-  display: none;
+.mobile-nav.active {
+  display: flex;
   flex-direction: column;
-  gap: 12px;
-  padding: 20px 24px;
-  background: rgba(11, 11, 11, 0.97);
-  border-top: 1px solid var(--border);
-  backdrop-filter: blur(20px);
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.4s ease;
+  gap: 24px;
+  text-align: center;
 }
 
-.navbar__drawer--open {
-  max-height: 400px;
+.mobile-nav-link {
+  font-family: var(--font-ui);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 16px;
+  text-transform: uppercase;
 }
 
-.navbar__drawer-link {
-  font-size: 1.05rem;
-  font-weight: 500;
-  color: var(--muted);
-  padding: 8px 0;
-  border-bottom: 1px solid var(--border);
-  transition: var(--transition);
-}
-
-.navbar__drawer-link:hover {
-  color: var(--text);
+.mobile-nav-link:hover {
+  color: var(--neon-accent);
 }
 
 @media (max-width: 768px) {

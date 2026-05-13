@@ -12,11 +12,11 @@ const Navbar = () => {
   return (
     <nav className={`navbar${scrolled ? ' scrolled' : ''}`}>
       <div className="container navbar-inner">
-        <span className="navbar-logo">CABLE<span style={{color:'var(--white)'}}>SNAP</span></span>
+        <span className="navbar-logo">CABLE<span style={{color:'var(--text-primary)'}}>SNAP</span></span>
         <div className="navbar-links">
           <a href="#problem">Problem</a>
           <a href="#solution">Solution</a>
-          <a href="#specs">Specs</a>
+          <a href="#features">Features</a>
           <a href="#trust">About</a>
           <a href="#pricing">Pricing</a>
         </div>
@@ -60,7 +60,7 @@ const HeroSection = () => {
                 <div className="led led-green" title="Charged"></div>
                 <div className="led led-cyan"  title="Monitoring"></div>
                 <div className="led led-orange" title="Alert"></div>
-                <span style={{fontSize:'0.8rem', color:'var(--muted)', marginLeft:'8px', alignSelf:'center'}}>Multi-LED Status Indicators</span>
+                <span style={{fontSize:'0.8rem', color:'var(--text-secondary)', marginLeft:'8px', alignSelf:'center'}}>Multi-LED Status Indicators</span>
               </div>
             </div>
 

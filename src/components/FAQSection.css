@@ -1,0 +1,112 @@
+.faq-section {
+  background: transparent;
+}
+
+.faq-list {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.faq-item {
+  cursor: pointer;
+  padding: 0;
+  overflow: hidden;
+  transition: var(--transition);
+  background: rgba(37, 49, 54, 0.4);
+  border-radius: 0;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow);
+  position: relative;
+}
+
+.faq-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 2px;
+  height: 100%;
+  background: var(--neon-accent);
+  opacity: 0;
+  transition: var(--transition);
+}
+
+.faq-item:hover {
+  background: var(--hover-surface);
+  border-color: var(--neon-accent);
+}
+
+.faq-item:hover::before {
+  opacity: 1;
+}
+
+.faq-item.active {
+  background: var(--bg-tertiary);
+  border-color: var(--neon-accent);
+  box-shadow: 0 0 20px rgba(0, 243, 255, 0.1);
+}
+
+.faq-item.active::before {
+  opacity: 1;
+}
+
+.faq-question {
+  padding: 24px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--text-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.faq-item.active .faq-question {
+  color: var(--neon-accent);
+  text-shadow: 0 0 10px var(--neon-glow);
+}
+
+.faq-icon {
+  color: var(--text-muted);
+  transition: transform 0.3s ease;
+}
+
+.faq-item.active .faq-icon {
+  transform: rotate(180deg);
+  color: var(--neon-accent);
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out, opacity 0.3s ease;
+  opacity: 0;
+}
+
+.faq-item.active .faq-answer {
+  max-height: 500px;
+  opacity: 1;
+}
+
+.faq-answer-content {
+  padding: 0 32px 24px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  font-size: 0.95rem;
+  font-family: var(--font-ui);
+}
+
+@media (max-width: 600px) {
+  .faq-question {
+    padding: 20px;
+    font-size: 1rem;
+  }
+  .faq-answer-content {
+    padding: 0 20px 20px;
+  }
+}

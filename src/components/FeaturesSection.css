@@ -1,8 +1,8 @@
 /* FeaturesSection */
 .specs-wrapper {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 350px), 1fr));
+  gap: clamp(1.5rem, 4vw, 2.5rem);
   align-items: start;
 }
 .spec-item {
@@ -10,41 +10,68 @@
   align-items: flex-start;
   gap: 20px;
   padding: 24px 28px;
-  background: rgba(255,255,255,0.025);
-  border-radius: 16px;
-  border: 1px solid var(--border);
-  transition: border-color 0.3s, transform 0.3s;
+  background: rgba(37, 49, 54, 0.4);
+  border-radius: var(--radius);
+  border: 1px solid var(--border-color);
+  transition: var(--transition);
+  box-shadow: var(--shadow);
+  position: relative;
+  overflow: hidden;
 }
+
+.spec-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 2px;
+  height: 100%;
+  background: var(--neon-accent);
+  opacity: 0;
+  transition: var(--transition);
+}
+
 .spec-item:hover {
-  border-color: var(--cyan);
+  background: var(--hover-surface);
   transform: translateY(-4px);
+  box-shadow: 0 0 25px rgba(0, 243, 255, 0.1), var(--shadow);
+  border-color: var(--neon-accent);
 }
-.spec-icon {
+
+.spec-item:hover::before {
+  opacity: 1;
+}
+
+.specs-icon {
   flex-shrink: 0;
   width: 52px;
   height: 52px;
-  background: rgba(91,192,190,0.1);
-  border: 1px solid rgba(91,192,190,0.25);
-  border-radius: 12px;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--cyan);
-  font-size: 1.4rem;
+  color: var(--neon-accent);
+  transition: var(--transition);
+  clip-path: polygon(15% 0, 100% 0, 100% 85%, 85% 100%, 0 100%, 0 15%);
 }
+
 .spec-text h4 {
-  font-family: 'Rajdhani', sans-serif;
-  font-size: 1rem;
+  font-family: var(--font-ui);
+  font-size: 1.1rem;
   font-weight: 700;
-  color: var(--muted);
+  color: var(--text-secondary);
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   margin-bottom: 4px;
 }
+
 .spec-text p {
-  font-size: 1.15rem;
+  font-family: var(--font-ui);
+  font-size: 1.05rem;
   font-weight: 600;
-  color: var(--white);
+  color: var(--text-primary);
+  letter-spacing: 0.05em;
 }
 @media(max-width:768px){
   .specs-wrapper{ grid-template-columns:1fr; }
