@@ -10,7 +10,7 @@ const links = [
 ];
 
 const Footer = () => (
-  <footer style={{ background: 'var(--bg-secondary)', paddingTop: 'clamp(40px, 8vw, 80px)', borderTop: '1px solid var(--border-color)' }}>
+  <footer style={{ background: 'rgba(15, 17, 18, 0.4)', paddingTop: 'clamp(40px, 8vw, 80px)', borderTop: '1px solid var(--border-color)' }}>
     <div className="container">
       {/* Grid */}
       <div
