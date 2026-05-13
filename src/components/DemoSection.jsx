@@ -13,7 +13,7 @@ export default function DemoSection() {
             See <span className="gradient-text">CABLESNAP</span> in Action
           </h2>
           <p className="section-subtitle">
-            Watch how CABLESNAP automatically disconnects your charger at the preset time —
+            Watch how CABLESNAP automatically disconnects your charger at the preset battery level —
             protecting your battery while you sleep.
           </p>
           <div className="glow-divider" />
@@ -39,7 +39,7 @@ export default function DemoSection() {
           {/* Side indicators */}
           <div className="demo-indicators">
             {[
-              { num: '1', title: 'Set Timer', desc: 'Dial your desired charge duration' },
+              { num: '1', title: 'Set Cutoff', desc: 'Select your target battery percentage' },
               { num: '2', title: 'Plug In', desc: 'Connect your charger as usual' },
               { num: '3', title: 'Sleep Easy', desc: 'CABLESNAP cuts power automatically' },
             ].map((item) => (

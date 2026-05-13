@@ -4,12 +4,12 @@ import './FAQSection.css';
 
 const faqs = [
   {
-    question: "How long does CABLESNAP take to disconnect?",
-    answer: "CABLESNAP disconnects power exactly at the time you set on the dial. The physical mechanism triggers instantly when the timer reaches zero."
+    question: "How does CABLESNAP know when to disconnect?",
+    answer: "CABLESNAP monitors your battery percentage and physically disconnects power when it reaches your preset threshold."
   },
   {
     question: "Is it compatible with all fast chargers?",
-    answer: "Yes! CABLESNAP is designed to handle high-wattage fast chargers (up to 100W) without reducing charging speed or data transfer capabilities."
+    answer: "Yes! CABLESNAP is compatible with standard USB charging adapters and is currently optimized for smartphone charging."
   },
   {
     question: "Does it work with both iPhone and Android?",

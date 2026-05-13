@@ -38,15 +38,14 @@ const HeroSection = () => {
             {/* Content */}
             <div>
               <div className="hero-badge">
-                <Zap size={14} fill="currentColor" /> World's First Smart Cable Ejector
+                <Zap size={14} fill="currentColor" /> IoT-Enabled Smart Physical Charging Disconnect System
               </div>
               <h1 className="hero-headline">
-                Stop Killing Your<br />
-                <span className="gradient-text">Battery</span> While You Sleep.
+                Stop Damaging Your<br />
+                <span className="gradient-text">Battery</span> Overnight.
               </h1>
               <p className="hero-sub">
-                The world's first smart charging system that physically disconnects your cable when your phone is full.
-                Protect your battery health, reduce overheating, and extend your device's life—automatically.
+                Smart charging that protects battery health through intelligent monitoring and automatic physical disconnection.
               </p>
               <div className="hero-btns">
                 <button className="btn btn-primary">

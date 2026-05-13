@@ -5,20 +5,20 @@ const specs = [
   {
     icon: <Zap size={24} />,
     label: "Power Delivery",
-    value: "Up to 100W",
-    desc: "Supports PD 3.0 and QC 4.0 fast charging protocols."
+    value: "Smartphone Optimized",
+    desc: "Compatible with standard USB charging adapters."
   },
   {
     icon: <Shield size={24} />,
     label: "Safety Rating",
-    value: "CE / RoHS",
-    desc: "Built with flame-retardant materials and surge protection."
+    value: "Safety Focused",
+    desc: "Designed with safety-focused architecture and flame-retardant materials."
   },
   {
     icon: <Battery size={24} />,
     label: "Battery Health",
-    value: "+35% Life",
-    desc: "Reduces lithium-ion degradation by 15% annually on average."
+    value: "Health Protection",
+    desc: "Designed to help improve long-term battery health and reduce degradation."
   },
   {
     icon: <Cpu size={24} />,

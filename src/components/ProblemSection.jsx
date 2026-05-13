@@ -10,7 +10,7 @@ const ProblemSection = () => (
         <h2 className="section-title">The <span className="orange-text">60%</span> Problem.</h2>
         <p className="section-subtitle" style={{ margin: '0 auto' }}>
           Did you know over 60% of users charge their phones overnight? This leads to "Battery Stress,"
-          constant trickle-charging, and dangerous overheating.
+          constant trickle-charging, and excess heat buildup.
         </p>
       </div>
 
@@ -34,7 +34,7 @@ const ProblemSection = () => (
 
           <div className="problem-quote">
             <p>
-              "Lithium-ion batteries degrade 2× faster when kept at 100% charge for hours on end."
+              "Keeping lithium-ion batteries at 100% charge for long periods accelerates battery degradation."
             </p>
             <span>— Battery University</span>
           </div>
