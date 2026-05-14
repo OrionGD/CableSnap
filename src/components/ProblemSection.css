@@ -1,7 +1,7 @@
 /* ProblemSection - Modern Cyber-Industrial Design */
 .problem-section {
   position: relative;
-  background: linear-gradient(180deg, #0a0a0a 0%, #1a1a2e 100%);
+  background: rgba(1, 1, 1, 0.5); /* Semi-transparent to show CyberGridBackground */
   overflow: hidden;
   padding: 100px 0;
   border-bottom: 1px solid rgba(0, 243, 255, 0.1);
