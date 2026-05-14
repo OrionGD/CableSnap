@@ -1,15 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Rajdhani:wght@400;500;600;700&display=swap');
 
 @font-face {
+  font-family: 'Papyrus';
+  src: url('/fonts/papyrus.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
   font-family: 'GamingFont';
-  src: url('D:/FOnt/VeniteAdoremus-rgRBA.ttf') format('truetype');
+  src: url('/fonts/VeniteAdoremus-rgRBA.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'GamingFontStraight';
-  src: url('D:/FOnt/VeniteAdoremusStraight-Yzo6v.ttf') format('truetype');
+  src: url('/fonts/VeniteAdoremusStraight-Yzo6v.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
