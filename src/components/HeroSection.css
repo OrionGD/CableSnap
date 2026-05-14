@@ -54,6 +54,8 @@
   display: flex;
   align-items: center;
   padding: clamp(100px, 15vh, 160px) 0 60px;
+  overflow: hidden;
+  width: 100%;
   background:
     radial-gradient(ellipse 80% 60% at 65% 20%, rgba(132, 148, 160, 0.03) 0%, transparent 70%),
     radial-gradient(ellipse 50% 40% at 10% 85%, rgba(111, 124, 134, 0.02) 0%, transparent 60%);

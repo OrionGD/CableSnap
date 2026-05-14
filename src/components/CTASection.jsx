@@ -20,7 +20,7 @@ const CTASection = () => (
         <div
           className="glass-card"
           style={{
-            padding: '60px',
+            padding: 'clamp(30px, 8vw, 60px)',
             textAlign: 'center',
             background: 'var(--bg-surface)',
             border: '1px solid var(--neon-accent)',
