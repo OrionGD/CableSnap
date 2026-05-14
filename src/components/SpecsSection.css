@@ -5,9 +5,15 @@
 
 .specs-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 450px), 1fr));
+  grid-template-columns: 1fr;
   gap: clamp(40px, 8vw, 80px);
   align-items: center;
+}
+
+@media (min-width: 992px) {
+  .specs-grid {
+    grid-template-columns: 1.2fr 0.8fr;
+  }
 }
 
 .specs-list {
