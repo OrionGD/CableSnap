@@ -1,6 +1,75 @@
 import React, { useEffect, useRef } from 'react';
 import './CyberGridBackground.css';
 
+class Streak {
+  constructor(gridSize, width, height) {
+    this.gridSize = gridSize;
+    this.width = width;
+    this.height = height;
+    this.reset(true);
+  }
+  
+  reset(randomize = false) {
+    this.isHorizontal = Math.random() > 0.5;
+    this.speed = (Math.random() * 1.5 + 0.5) * (Math.random() > 0.5 ? 1 : -1);
+    this.length = Math.random() * 200 + 100;
+    this.opacity = Math.random() * 0.4 + 0.1;
+    
+    if (this.isHorizontal) {
+      this.y = Math.floor(Math.random() * (this.height / this.gridSize)) * this.gridSize;
+      if (randomize) {
+        this.x = Math.random() * this.width;
+      } else {
+        this.x = this.speed > 0 ? -this.length : this.width + this.length;
+      }
+    } else {
+      this.x = Math.floor(Math.random() * (this.width / this.gridSize)) * this.gridSize;
+      if (randomize) {
+        this.y = Math.random() * this.height;
+      } else {
+        this.y = this.speed > 0 ? -this.length : this.height + this.length;
+      }
+    }
+  }
+
+  update(width, height) {
+    this.width = width;
+    this.height = height;
+    if (this.isHorizontal) {
+      this.x += this.speed;
+      if ((this.speed > 0 && this.x > this.width + this.length) || (this.speed < 0 && this.x < -this.length)) {
+        this.reset();
+      }
+    } else {
+      this.y += this.speed;
+      if ((this.speed > 0 && this.y > this.height + this.length) || (this.speed < 0 && this.y < -this.length)) {
+        this.reset();
+      }
+    }
+  }
+
+  draw(ctx) {
+    ctx.beginPath();
+    if (this.isHorizontal) {
+      const grad = ctx.createLinearGradient(this.x, this.y, this.x - this.length * Math.sign(this.speed), this.y);
+      grad.addColorStop(0, `rgba(0, 243, 255, ${this.opacity})`);
+      grad.addColorStop(1, 'rgba(0, 243, 255, 0)');
+      ctx.strokeStyle = grad;
+      ctx.moveTo(this.x, this.y);
+      ctx.lineTo(this.x - this.length * Math.sign(this.speed), this.y);
+    } else {
+      const grad = ctx.createLinearGradient(this.x, this.y, this.x, this.y - this.length * Math.sign(this.speed));
+      grad.addColorStop(0, `rgba(0, 243, 255, ${this.opacity})`);
+      grad.addColorStop(1, 'rgba(0, 243, 255, 0)');
+      ctx.strokeStyle = grad;
+      ctx.moveTo(this.x, this.y);
+      ctx.lineTo(this.x, this.y - this.length * Math.sign(this.speed));
+    }
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+  }
+}
+
 const CyberGridBackground = () => {
   const canvasRef = useRef(null);
 
@@ -61,72 +130,8 @@ const CyberGridBackground = () => {
     const streaks = [];
     const maxStreaks = 20;
 
-    class Streak {
-      constructor() {
-        this.reset(true);
-      }
-      
-      reset(randomize = false) {
-        this.isHorizontal = Math.random() > 0.5;
-        this.speed = (Math.random() * 1.5 + 0.5) * (Math.random() > 0.5 ? 1 : -1);
-        this.length = Math.random() * 200 + 100;
-        this.opacity = Math.random() * 0.4 + 0.1;
-        
-        if (this.isHorizontal) {
-          this.y = Math.floor(Math.random() * (height / gridSize)) * gridSize;
-          if (randomize) {
-            this.x = Math.random() * width;
-          } else {
-            this.x = this.speed > 0 ? -this.length : width + this.length;
-          }
-        } else {
-          this.x = Math.floor(Math.random() * (width / gridSize)) * gridSize;
-          if (randomize) {
-            this.y = Math.random() * height;
-          } else {
-            this.y = this.speed > 0 ? -this.length : height + this.length;
-          }
-        }
-      }
-
-      update() {
-        if (this.isHorizontal) {
-          this.x += this.speed;
-          if ((this.speed > 0 && this.x > width + this.length) || (this.speed < 0 && this.x < -this.length)) {
-            this.reset();
-          }
-        } else {
-          this.y += this.speed;
-          if ((this.speed > 0 && this.y > height + this.length) || (this.speed < 0 && this.y < -this.length)) {
-            this.reset();
-          }
-        }
-      }
-
-      draw(ctx) {
-        ctx.beginPath();
-        if (this.isHorizontal) {
-          const grad = ctx.createLinearGradient(this.x, this.y, this.x - this.length * Math.sign(this.speed), this.y);
-          grad.addColorStop(0, `rgba(0, 243, 255, ${this.opacity})`);
-          grad.addColorStop(1, 'rgba(0, 243, 255, 0)');
-          ctx.strokeStyle = grad;
-          ctx.moveTo(this.x, this.y);
-          ctx.lineTo(this.x - this.length * Math.sign(this.speed), this.y);
-        } else {
-          const grad = ctx.createLinearGradient(this.x, this.y, this.x, this.y - this.length * Math.sign(this.speed));
-          grad.addColorStop(0, `rgba(0, 243, 255, ${this.opacity})`);
-          grad.addColorStop(1, 'rgba(0, 243, 255, 0)');
-          ctx.strokeStyle = grad;
-          ctx.moveTo(this.x, this.y);
-          ctx.lineTo(this.x, this.y - this.length * Math.sign(this.speed));
-        }
-        ctx.lineWidth = 1.5;
-        ctx.stroke();
-      }
-    }
-
     for (let i = 0; i < maxStreaks; i++) {
-      streaks.push(new Streak());
+      streaks.push(new Streak(gridSize, width, height));
     }
 
     let time = 0;
@@ -215,7 +220,7 @@ const CyberGridBackground = () => {
 
       // Draw streaks
       streaks.forEach(streak => {
-        streak.update();
+        streak.update(width, height);
         streak.draw(ctx);
       });
 

@@ -1,13 +1,6 @@
 import React from 'react';
 import { Zap } from 'lucide-react';
 
-const perks = [
-  'Physical cable ejection when fully charged',
-  'Custom cut-off limit via CableSnap App',
-  'Built-in fire-safety relays & MOSFETs',
-  'Free Android app — always in your pocket',
-  'Lifetime firmware updates over Wi-Fi',
-];
 
 const CTASection = () => (
   <section className="section" id="pricing"

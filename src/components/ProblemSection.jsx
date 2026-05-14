@@ -23,7 +23,7 @@ const ProblemSection = () => (
           className="thermal-map-img"
         />
         <div className="thermal-labels">
-          <div className="label-item core-heat">INTENSE CORE HEAT (>46°C)</div>
+          <div className="label-item core-heat">INTENSE CORE HEAT (&gt;46°C)</div>
           <div className="label-item charging-spot">CHARGING ZONE HOT SPOT</div>
           <div className="label-item cable-heat">CABLE CONNECTION HEAT</div>
           <div className="label-item ambient-temp">AMBIENT ROOM TEMP: 21°C</div>

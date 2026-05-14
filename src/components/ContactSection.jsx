@@ -49,7 +49,7 @@ export default function ContactSection() {
       } else {
         setError('Something went wrong. Please try again.');
       }
-    } catch (err) {
+    } catch {
       setError('Failed to connect. Please check your internet.');
     } finally {
       setIsSubmitting(false);
