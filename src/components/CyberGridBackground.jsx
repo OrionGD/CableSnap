@@ -153,7 +153,9 @@ const CyberGridBackground = () => {
         if (p.y > height) p.y = 0;
 
         ctx.fillStyle = `rgba(0, 243, 255, ${p.opacity * (0.5 + Math.sin(time + p.x) * 0.5)})`;
-        ctx.fillRect(p.x, p.y, p.size, p.size);
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size / 2, 0, Math.PI * 2);
+        ctx.fill();
       });
 
       // Draw Grid
