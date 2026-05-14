@@ -154,7 +154,7 @@ ul { list-style: none; }
 
 .section-title {
   font-family: var(--font-heading);
-  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-size: clamp(1.8rem, 8vw, 5rem);
   font-weight: 400; /* Papyrus usually looks better at normal weight */
   line-height: 1.1;
   margin-bottom: 1.5rem;
@@ -162,6 +162,8 @@ ul { list-style: none; }
   text-transform: uppercase;
   letter-spacing: 0.02em;
   text-shadow: 0 0 20px rgba(132, 148, 160, 0.2);
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 }
 
 .section-subtitle {
